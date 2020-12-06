@@ -28,11 +28,10 @@ println(parse_groups(g, Set([c for c in "qwertyuiopasdfghjklzxcvbnm"]), intersec
 f = open("C:\\Users\\Mason Smith\\Documents\\day06input.txt")
 h = read(f, String)
 
-groups = Array(split(h, "\n\n"))
-println(groups)
+groups = split(h, "\n\n")
 
 function parse_group(group, init, redf)
-    sets = map(x -> Set([c for c in x]), split(group, "\n"))
+    sets = map(Set, split(group, "\n"))
     length(reduce(redf, sets; init=init))
 end
 
