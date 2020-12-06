@@ -30,10 +30,9 @@ h = read(f, String)
 
 groups = split(h, "\n\n")
 
-function parse_group(group, init, redf)
-    sets = map(Set, split(group, "\n"))
-    length(reduce(redf, sets; init=init))
+function parse_group(group, redf)
+    length(redf(map(Set, split(group, "\n"))...))
 end
 
-println(sum(map(x -> parse_group(x, Set(), union), groups)))
-println(sum(map(x -> parse_group(x, Set([c for c in "qwertyuiopasdfghjklzxcvbnm"]), intersect), groups)))
+println(sum(map(x -> parse_group(x, union), groups)))
+println(sum(map(x -> parse_group(x, intersect), groups)))
